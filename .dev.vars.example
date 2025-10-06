@@ -1,6 +1,2 @@
-# Your Cloudflare Account ID (Find it on the main page of your Cloudflare dashboard)
 CLOUDFLARE_ACCOUNT_ID="YOUR_CLOUDFLARE_ACCOUNT_ID"
-
-# A Cloudflare API Token with "Workers AI" edit permissions
-# (Create one under My Profile > API Tokens > Create Token > "Edit Workers AI")
 CLOUDFLARE_API_TOKEN="YOUR_CLOUDFLARE_API_TOKEN"
