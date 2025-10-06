@@ -17,7 +17,7 @@
     {
       "binding": "DB",
       "database_name": "characters",
-      "database_id": "575daeab-db8f-4aeb-ba82-0fba43ed952c",
+      "database_id": "358d2180-a17e-4749-b7ef-e170725dbae5",
       "remote": true
     }
   ],
@@ -30,14 +30,6 @@
   ],
   "assets": {
     "directory": "./public"
-  },
-  "durable_objects": {
-    "bindings": [
-      {
-        "name": "Chat",
-        "class_name": "Chat"
-      }
-    ]
   },
   "migrations": [
     {

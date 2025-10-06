@@ -7,7 +7,7 @@
   "scripts": {
     "start": "vite dev",
     "deploy": "vite build && wrangler deploy",
-    "setup:d1": "node scripts/setup-d1.js",
+    "setup:d1": "wrangler dev scripts/setup-d1.js -c ./wrangler.jsonc --remote --port 8787",
     "setup:vectorize": "wrangler dev scripts/setup-vectorize.js",
     "test": "vitest",
     "types": "wrangler types env.d.ts --include-runtime false",
