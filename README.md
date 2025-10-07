@@ -93,8 +93,9 @@ npm install
    ```
 4. **Create a Vectorize Index**
    ```bash
-   # Create Vectorize Index, dimensions match the embedding model specified in dev.vars
-   npx wrangler vectorize create naruto-rag-index --dimensions=768 --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
+   # Create Vectorize database, dimensions match the embedding model's (specified in dev.vars)
+   npx wrangler vectorize create naruto-rag-index --dimensions=1024 --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
+   npx wrangler vectorize create-metadata-index naruto-rag-index --property-name=characterId --type=number
    
    # Create embeddings for all character data
    npm run setup:vectorize
