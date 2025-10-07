@@ -81,6 +81,24 @@
   "html": { "formatter": { "selfCloseVoidElements": "always" } },
   "assist": {
     "enabled": true,
-    "actions": { "source": { "useSortedKeys": "off" } }
+    "actions": {
+      "source": {
+        "useSortedKeys": "off",
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              ":PACKAGE:",
+              ":BLANK_LINE:",
+              ["@/assets/**"],
+              ":BLANK_LINE:",
+              ["@/common/**", "@/lib/**", "@/api/**", "@/utils/**"],
+              ":BLANK_LINE:",
+              ["./**"]
+            ]
+          }
+        }
+      }
+    }
   }
 }

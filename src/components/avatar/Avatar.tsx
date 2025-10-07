@@ -1,6 +1,8 @@
 import React from 'react'
-import { Slot } from '@/components/slot/Slot'
+
 import { cn } from '@/lib/utils'
+
+import { Slot } from '@/components/slot/Slot'
 
 export type AvatarProps = {
   as?: React.ElementType

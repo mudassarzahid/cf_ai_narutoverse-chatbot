@@ -1,6 +1,7 @@
 import { PaperPlaneTiltIcon, StopIcon } from '@phosphor-icons/react'
 import type { ChatStatus } from 'ai'
 import React from 'react'
+
 import { Textarea } from '@/components/textarea/Textarea'
 
 interface ChatInputProps {

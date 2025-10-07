@@ -1,4 +1,5 @@
 import { ChatIcon } from '@phosphor-icons/react'
+
 import { Card } from '@/components/card/Card'
 import type { Character } from '@/types'
 

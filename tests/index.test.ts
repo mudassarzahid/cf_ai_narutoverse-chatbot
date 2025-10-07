@@ -1,9 +1,10 @@
+import { beforeEach, describe, expect, it } from 'vitest'
+
 import {
   createExecutionContext,
   env,
   waitOnExecutionContext
 } from 'cloudflare:test'
-import { beforeEach, describe, expect, it } from 'vitest'
 import worker from '../src/server'
 
 declare module 'cloudflare:test' {

@@ -2,6 +2,7 @@ import type { UIMessage } from '@ai-sdk/react'
 import { useAgentChat } from 'agents/ai-react'
 import { useAgent } from 'agents/react'
 import { useCallback, useState } from 'react'
+
 import { CharacterSelector } from '@/components/character-selector/CharacterSelector'
 import { ChatHeader } from '@/components/chat/ChatHeader'
 import { ChatInput } from '@/components/chat/ChatInput'

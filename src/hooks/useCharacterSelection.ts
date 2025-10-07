@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+
 import type { Character } from '@/types'
 
 export function useCharacterSelection(clearHistory?: () => void) {

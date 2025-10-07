@@ -1,8 +1,9 @@
 import type { UIMessage } from '@ai-sdk/react'
 import { useCallback, useEffect, useRef } from 'react'
-import type { Character } from '@/types'
+
 import { EmptyChat } from './EmptyChat'
 import { MessageBubble } from './MessageBubble'
+import type { Character } from '@/types'
 
 interface MessageListProps {
   messages: UIMessage[]

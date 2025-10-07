@@ -5,6 +5,7 @@ import {
   TrashIcon,
   UserIcon
 } from '@phosphor-icons/react'
+
 import { Avatar } from '@/components/avatar/Avatar'
 import { Button } from '@/components/button/Button'
 import { Toggle } from '@/components/toggle/Toggle'

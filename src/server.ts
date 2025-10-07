@@ -1,4 +1,3 @@
-import { env } from 'cloudflare:workers'
 import { routeAgentRequest } from 'agents'
 import { AIChatAgent } from 'agents/ai-chat-agent'
 import {
@@ -11,7 +10,9 @@ import {
   type UIMessage
 } from 'ai'
 import { createWorkersAI } from 'workers-ai-provider'
+
 import { cleanupMessages } from './utils'
+import { env } from 'cloudflare:workers'
 
 const workersai = createWorkersAI({ binding: env.AI })
 // @ts-ignore
