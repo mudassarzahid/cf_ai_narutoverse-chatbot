@@ -57,7 +57,7 @@ To get a local copy up and running, follow these steps.
 #### 1. Clone the repository
 
 ```shell
-git clone git@github.com:mudassarzahid/cloudflare-ai-naruto-chatbot.git
+git clone git@github.com:mudassarzahid/cf_ai_narutoverse-chatbot.git
 cd cloudflare-ai-naruto-chatbot
 ```
 
