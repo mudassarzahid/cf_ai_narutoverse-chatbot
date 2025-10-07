@@ -1,6 +1,5 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
 
-![Example Chat](./public/example.gif)
 <p align="center">Example chat showcasing the Chatbot's ability to impersonate the character's personality, reference specific plot points
 thanks to querying the RAG database, and overall engage in a coherent conversation.</p>
 
@@ -9,10 +8,10 @@ thanks to querying the RAG database, and overall engage in a coherent conversati
 This project is built entirely on the Cloudflare stack. The backend is a serverless Cloudflare Worker written
 in `TypeScript`:
 
-* **Cloudflare D1** for the relational character database.
-* **Cloudflare Vectorize** for the vector database to enable RAG.
-* **Cloudflare AI** for running the LLM (`Llama 3.3`) and embedding models.
-* **Cloudflare Durable Objects** for managing stateful chat sessions.
+* _Cloudflare D1_ for the relational character database.
+* _Cloudflare Vectorize_ for the vector database to enable RAG.
+* _Cloudflare AI_ for running the LLM (`Llama 3.3`) and embedding models.
+* _Cloudflare Durable Objects_ for managing stateful chat sessions.
 
 The frontend is developed in `TypeScript` using `React` and `Vite`, styled with `Tailwind CSS`.
 
@@ -20,10 +19,10 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
 
 1. **One-Time Data Setup**:
    The project relies on two initial setup scripts that must be run before starting the application.
-    * **D1 Database Population**: A script reads the `naruto-characters.json` file and inserts all character metadata (
+    * _D1 Database Population_: A script reads the `naruto-characters.json` file and inserts all character metadata (
       e.g. name, summary, personality, story data) into a Cloudflare D1 database. Note: I obtained permission by
       Fandom.com to scrape that data from NarutoWiki. This repository does not contain the scraping script.
-    * **Vectorize Index Creation**: A second script reads the same JSON file, splits the data into smaller chunks,
+    * _Vectorize Index Creation_: A second script reads the same JSON file, splits the data into smaller chunks,
       creates embeddings for each chunk using Cloudflare AI's `@cf/baai/bge-base-en-v1.5` model, and stores these
       vectors in a Cloudflare Vectorize index.
 
