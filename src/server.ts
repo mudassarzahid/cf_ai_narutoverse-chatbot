@@ -14,7 +14,8 @@ import { createWorkersAI } from 'workers-ai-provider'
 import { cleanupMessages } from './utils'
 
 const workersai = createWorkersAI({ binding: env.AI })
-const model = workersai('@cf/meta/llama-3.1-8b-instruct-fp8')
+// @ts-ignore
+const model = workersai('@cf/meta/llama-3.3-70b-instruct-fp8-fast')
 
 export class Chat extends AIChatAgent<Env> {
   async onChatMessage(
