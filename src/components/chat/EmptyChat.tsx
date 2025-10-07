@@ -1,9 +1,9 @@
-import { Card } from "@/components/card/Card";
-import type { Character } from "@/types";
-import { ChatIcon } from "@phosphor-icons/react";
+import { ChatIcon } from '@phosphor-icons/react'
+import { Card } from '@/components/card/Card'
+import type { Character } from '@/types'
 
 interface EmptyChatProps {
-  character: Character | null;
+  character: Character | null
 }
 
 export function EmptyChat({ character }: EmptyChatProps) {
@@ -30,5 +30,5 @@ export function EmptyChat({ character }: EmptyChatProps) {
         </div>
       </Card>
     </div>
-  );
+  )
 }

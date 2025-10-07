@@ -1,23 +1,23 @@
-import { Avatar } from "@/components/avatar/Avatar";
-import { Button } from "@/components/button/Button";
-import { Toggle } from "@/components/toggle/Toggle";
-import type { Character } from "@/types";
 import {
   BugIcon,
   MoonIcon,
   SunIcon,
   TrashIcon,
   UserIcon
-} from "@phosphor-icons/react";
+} from '@phosphor-icons/react'
+import { Avatar } from '@/components/avatar/Avatar'
+import { Button } from '@/components/button/Button'
+import { Toggle } from '@/components/toggle/Toggle'
+import type { Character } from '@/types'
 
 interface ChatHeaderProps {
-  character: Character | null;
-  theme: "dark" | "light";
-  onToggleTheme: () => void;
-  onClearHistory: () => void;
-  onClearSelection: () => void;
-  showDebug: boolean;
-  onToggleDebug: () => void;
+  character: Character | null
+  theme: 'dark' | 'light'
+  onToggleTheme: () => void
+  onClearHistory: () => void
+  onClearSelection: () => void
+  showDebug: boolean
+  onToggleDebug: () => void
 }
 
 export function ChatHeader({
@@ -34,7 +34,7 @@ export function ChatHeader({
       <div className="flex-1">
         <div className="flex animate-slide-in-left items-center gap-3">
           <Avatar
-            username={character?.name || "Character"}
+            username={character?.name || 'Character'}
             image={character?.image_url}
             className="h-10 w-10 ring-2 ring-green-500 transition-all duration-300 hover:ring-green-400"
           />
@@ -64,7 +64,7 @@ export function ChatHeader({
           className="h-10 w-10 transition-all duration-300 hover:scale-110 hover:bg-slate-200/80 dark:hover:bg-slate-700/80"
           onClick={onToggleTheme}
         >
-          {theme === "dark" ? (
+          {theme === 'dark' ? (
             <SunIcon size={20} className="text-orange-300" />
           ) : (
             <MoonIcon
@@ -95,5 +95,5 @@ export function ChatHeader({
         </Button>
       </div>
     </div>
-  );
+  )
 }

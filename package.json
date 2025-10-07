@@ -11,7 +11,7 @@
     "setup:vectorize": "wrangler dev scripts/setup-vectorize.js --port 8787",
     "test": "vitest",
     "types": "wrangler types env.d.ts --include-runtime false",
-    "format": "npx @biomejs/biome lint --write ."
+    "format": "npx @biomejs/biome check --write --unsafe ."
   },
   "keywords": [
     "cloudflare",

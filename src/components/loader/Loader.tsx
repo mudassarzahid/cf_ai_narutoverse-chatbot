@@ -1,13 +1,13 @@
 type LoaderProps = {
-  className?: string;
-  size?: number;
-  title?: string;
-};
+  className?: string
+  size?: number
+  title?: string
+}
 
 export const Loader = ({
   className,
   size = 24,
-  title = "Loading..."
+  title = 'Loading...'
 }: LoaderProps) => (
   <svg
     width="24"
@@ -62,4 +62,4 @@ export const Loader = ({
       strokeLinecap="round"
     />
   </svg>
-);
+)

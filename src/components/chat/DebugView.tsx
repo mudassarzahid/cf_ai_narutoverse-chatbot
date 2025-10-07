@@ -1,7 +1,7 @@
-import type { UIMessage } from "@ai-sdk/react";
+import type { UIMessage } from '@ai-sdk/react'
 
 interface DebugViewProps {
-  messages: UIMessage[];
+  messages: UIMessage[]
 }
 
 export function DebugView({ messages }: DebugViewProps) {
@@ -21,5 +21,5 @@ export function DebugView({ messages }: DebugViewProps) {
         ))}
       </div>
     </div>
-  );
+  )
 }

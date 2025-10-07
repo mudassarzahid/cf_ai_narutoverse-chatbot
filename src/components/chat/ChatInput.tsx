@@ -1,14 +1,14 @@
-import { Textarea } from "@/components/textarea/Textarea";
-import { PaperPlaneTiltIcon, StopIcon } from "@phosphor-icons/react";
-import React from "react";
-import type { ChatStatus } from "ai";
+import { PaperPlaneTiltIcon, StopIcon } from '@phosphor-icons/react'
+import type { ChatStatus } from 'ai'
+import React from 'react'
+import { Textarea } from '@/components/textarea/Textarea'
 
 interface ChatInputProps {
-  input: string;
-  onInputChange: (value: string) => void;
-  onSubmit: () => void;
-  status: ChatStatus;
-  onStop: () => void;
+  input: string
+  onInputChange: (value: string) => void
+  onSubmit: () => void
+  status: ChatStatus
+  onStop: () => void
 }
 
 export function ChatInput({
@@ -18,15 +18,15 @@ export function ChatInput({
   status,
   onStop
 }: ChatInputProps) {
-  const isGenerating = status === "submitted" || status === "streaming";
+  const isGenerating = status === 'submitted' || status === 'streaming'
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement | HTMLTextAreaElement>
   ) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-    onSubmit();
-  };
+    e.preventDefault()
+    if (!input.trim()) return
+    onSubmit()
+  }
 
   return (
     <form
@@ -40,23 +40,23 @@ export function ChatInput({
             className="!text-base max-h-[calc(75dvh)] min-h-[24px] w-full resize-none overflow-hidden rounded-2xl border border-slate-300 bg-white/80 px-4 py-3 pb-12 text-slate-900 ring-offset-background backdrop-blur-sm placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-600 dark:bg-slate-800/80 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-500 md:text-sm"
             value={input}
             onChange={(e) => {
-              onInputChange(e.target.value);
-              e.target.style.height = "auto";
-              e.target.style.height = `${e.target.scrollHeight}px`;
+              onInputChange(e.target.value)
+              e.target.style.height = 'auto'
+              e.target.style.height = `${e.target.scrollHeight}px`
             }}
             onKeyDown={(e) => {
               if (
-                e.key === "Enter" &&
+                e.key === 'Enter' &&
                 !e.shiftKey &&
                 !e.nativeEvent.isComposing
               ) {
-                e.preventDefault();
-                handleSubmit(e);
-                e.currentTarget.style.height = "auto";
+                e.preventDefault()
+                handleSubmit(e)
+                e.currentTarget.style.height = 'auto'
               }
             }}
             rows={1}
-            style={{ height: "auto" }}
+            style={{ height: 'auto' }}
           />
           <div className="absolute bottom-2 right-2 flex w-fit flex-row justify-end">
             {isGenerating ? (
@@ -82,5 +82,5 @@ export function ChatInput({
         </div>
       </div>
     </form>
-  );
+  )
 }

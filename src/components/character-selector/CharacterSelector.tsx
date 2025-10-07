@@ -1,20 +1,20 @@
-import { useState, useEffect, useMemo } from "react";
-import { Card } from "@/components/card/Card";
-import { Button } from "@/components/button/Button";
-import { Avatar } from "@/components/avatar/Avatar";
 import {
-  UserIcon,
   MagnifyingGlassIcon,
+  MoonIcon,
   SunIcon,
-  MoonIcon
-} from "@phosphor-icons/react";
-import type { Character } from "@/types";
+  UserIcon
+} from '@phosphor-icons/react'
+import { useEffect, useMemo, useState } from 'react'
+import { Avatar } from '@/components/avatar/Avatar'
+import { Button } from '@/components/button/Button'
+import { Card } from '@/components/card/Card'
+import type { Character } from '@/types'
 
 interface CharacterSelectorProps {
-  onCharacterSelect: (character: Character) => void;
-  onGetCharacters: () => Promise<{ characters?: Character[]; error?: string }>;
-  theme: "dark" | "light";
-  onToggleTheme: () => void;
+  onCharacterSelect: (character: Character) => void
+  onGetCharacters: () => Promise<{ characters?: Character[]; error?: string }>
+  theme: 'dark' | 'light'
+  onToggleTheme: () => void
 }
 
 export function CharacterSelector({
@@ -23,77 +23,78 @@ export function CharacterSelector({
   theme,
   onToggleTheme
 }: CharacterSelectorProps) {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [characters, setCharacters] = useState<Character[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null
-  );
+  )
   const [clickedCharacter, setClickedCharacter] = useState<Character | null>(
     null
-  );
+  )
 
   useEffect(() => {
     const loadCharacters = async () => {
       try {
-        setLoading(true);
-        const result = await onGetCharacters();
+        setLoading(true)
+        const result = await onGetCharacters()
         if (result.error) {
-          setError(result.error);
+          setError(result.error)
         } else if (result.characters) {
-          setCharacters(result.characters);
+          setCharacters(result.characters)
         }
       } catch (err) {
-        setError("Failed to load characters");
-        console.error("Error loading characters:", err);
+        setError('Failed to load characters')
+        console.error('Error loading characters:', err)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    loadCharacters();
-  }, [onGetCharacters]);
+    loadCharacters()
+  }, [onGetCharacters])
 
   const filteredCharacters = useMemo(() => {
     if (!searchQuery.trim()) {
-      return characters;
+      return characters
     }
-    const query = searchQuery.toLowerCase();
-    const allMatches = characters.filter(char =>
-      char.name.toLowerCase().includes(query) ||
-      char.summary.toLowerCase().includes(query)
-    );
+    const query = searchQuery.toLowerCase()
+    const allMatches = characters.filter(
+      (char) =>
+        char.name.toLowerCase().includes(query) ||
+        char.summary.toLowerCase().includes(query)
+    )
 
     allMatches.sort((a, b) => {
-      const aIsNameMatch = a.name.toLowerCase().includes(query);
-      const bIsNameMatch = b.name.toLowerCase().includes(query);
+      const aIsNameMatch = a.name.toLowerCase().includes(query)
+      const bIsNameMatch = b.name.toLowerCase().includes(query)
 
       if (aIsNameMatch && !bIsNameMatch) {
-        return -1;
+        return -1
       }
       if (!aIsNameMatch && bIsNameMatch) {
-        return 1;
+        return 1
       }
-      return 0;
-    });
+      return 0
+    })
 
-    return allMatches;
-  }, [characters, searchQuery]);
+    return allMatches
+  }, [characters, searchQuery])
 
   const handleCharacterClick = (character: Character) => {
-    if (clickedCharacter) return;
-    setClickedCharacter(character);
-    setSelectedCharacter(character);
+    if (clickedCharacter) return
+    setClickedCharacter(character)
+    setSelectedCharacter(character)
     setTimeout(() => {
-      onCharacterSelect(character);
-    }, 500);
-  };
+      onCharacterSelect(character)
+    }, 500)
+  }
 
   const truncateSummary = (summary: string, maxLength: number = 100) => {
-    if (summary.length <= maxLength) return summary;
-    return summary.substring(0, maxLength) + "...";
-  };
+    if (summary.length <= maxLength) return summary
+    return summary.substring(0, maxLength) + '...'
+  }
 
   if (loading) {
     return (
@@ -105,8 +106,8 @@ export function CharacterSelector({
               <div
                 className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-slate-500 mx-auto animate-spin"
                 style={{
-                  animationDirection: "reverse",
-                  animationDuration: "1.5s"
+                  animationDirection: 'reverse',
+                  animationDuration: '1.5s'
                 }}
               ></div>
             </div>
@@ -118,7 +119,7 @@ export function CharacterSelector({
           </div>
         </Card>
       </div>
-    );
+    )
   }
 
   if (error) {
@@ -146,7 +147,7 @@ export function CharacterSelector({
           </div>
         </Card>
       </div>
-    );
+    )
   }
 
   return (
@@ -172,7 +173,7 @@ export function CharacterSelector({
               className="h-10 w-10 hover:bg-white/20 hover:scale-110 transition-all duration-300"
               onClick={onToggleTheme}
             >
-              {theme === "dark" ? (
+              {theme === 'dark' ? (
                 <SunIcon size={20} className="text-orange-300" />
               ) : (
                 <MoonIcon size={20} className="text-blue-400" />
@@ -220,11 +221,11 @@ export function CharacterSelector({
                   key={character.id}
                   className={`character-card p-6 cursor-pointer glass hover-lift transition-all duration-300 ${
                     clickedCharacter?.id === character.id
-                      ? "ring-2 ring-green-500 bg-gradient-to-br from-green-500/20 to-green-600/20 scale-105 shadow-lg"
+                      ? 'ring-2 ring-green-500 bg-gradient-to-br from-green-500/20 to-green-600/20 scale-105 shadow-lg'
                       : selectedCharacter?.id === character.id
-                        ? "ring-2 ring-slate-500 bg-gradient-to-br from-slate-500/20 to-slate-600/20"
-                        : "hover:bg-white/10"
-                  } animate-slide-in-up ${clickedCharacter ? "pointer-events-none" : ""}`}
+                        ? 'ring-2 ring-slate-500 bg-gradient-to-br from-slate-500/20 to-slate-600/20'
+                        : 'hover:bg-white/10'
+                  } animate-slide-in-up ${clickedCharacter ? 'pointer-events-none' : ''}`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => handleCharacterClick(character)}
                 >
@@ -247,7 +248,7 @@ export function CharacterSelector({
                       </h3>
                       <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
                         {clickedCharacter?.id === character.id
-                          ? "Starting chat..."
+                          ? 'Starting chat...'
                           : truncateSummary(character.summary)}
                       </p>
                     </div>
@@ -259,5 +260,5 @@ export function CharacterSelector({
         </div>
       </div>
     </div>
-  );
+  )
 }

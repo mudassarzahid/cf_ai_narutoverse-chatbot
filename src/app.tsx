@@ -1,24 +1,24 @@
-import { useCallback, useState } from "react";
-import { useAgent } from "agents/react";
-import { useAgentChat } from "agents/ai-react";
-import type { UIMessage } from "@ai-sdk/react";
-import { CharacterSelector } from "@/components/character-selector/CharacterSelector";
-import { useCharacterSelection } from "@/hooks/useCharacterSelection";
-import { useTheme } from "@/hooks/useTheme";
-import { ChatHeader } from "@/components/chat/ChatHeader";
-import { DebugView } from "@/components/chat/DebugView";
-import { MessageList } from "@/components/chat/MessageList";
-import { ChatInput } from "@/components/chat/ChatInput";
-import { useToggle } from "@/hooks/useToggle";
+import type { UIMessage } from '@ai-sdk/react'
+import { useAgentChat } from 'agents/ai-react'
+import { useAgent } from 'agents/react'
+import { useCallback, useState } from 'react'
+import { CharacterSelector } from '@/components/character-selector/CharacterSelector'
+import { ChatHeader } from '@/components/chat/ChatHeader'
+import { ChatInput } from '@/components/chat/ChatInput'
+import { DebugView } from '@/components/chat/DebugView'
+import { MessageList } from '@/components/chat/MessageList'
+import { useCharacterSelection } from '@/hooks/useCharacterSelection'
+import { useTheme } from '@/hooks/useTheme'
+import { useToggle } from '@/hooks/useToggle'
 
 export default function Chat() {
-  const { theme, toggleTheme } = useTheme();
-  const [showDebug, toggleDebug] = useToggle(false);
-  const [input, setInput] = useState("");
+  const { theme, toggleTheme } = useTheme()
+  const [showDebug, toggleDebug] = useToggle(false)
+  const [input, setInput] = useState('')
 
   const agent = useAgent({
-    agent: "chat"
-  });
+    agent: 'chat'
+  })
 
   const {
     messages: agentMessages,
@@ -28,7 +28,7 @@ export default function Chat() {
     stop
   } = useAgentChat<unknown, UIMessage<{ createdAt: string }>>({
     agent
-  });
+  })
 
   const {
     selectedCharacter,
@@ -37,22 +37,22 @@ export default function Chat() {
     getCharacterDetails,
     selectCharacter,
     clearSelection
-  } = useCharacterSelection(clearHistory);
+  } = useCharacterSelection(clearHistory)
 
   const handleAgentSubmit = useCallback(async () => {
-    if (!input.trim() || !selectedCharacter) return;
-    const message = input;
-    setInput("");
+    if (!input.trim() || !selectedCharacter) return
+    const message = input
+    setInput('')
 
     if (agentMessages.length === 0) {
-      const characterResult = await getCharacterDetails(selectedCharacter.id);
+      const characterResult = await getCharacterDetails(selectedCharacter.id)
       if (characterResult.character) {
         await sendMessage(
           {
-            role: "system",
+            role: 'system',
             parts: [
               {
-                type: "text",
+                type: 'text',
                 text: `CHARACTER_CONTEXT: ${JSON.stringify({
                   id: characterResult.character.id,
                   name: characterResult.character.name,
@@ -62,30 +62,30 @@ export default function Chat() {
             ]
           },
           { body: {} }
-        );
+        )
       }
     }
 
     await sendMessage(
       {
-        role: "user",
-        parts: [{ type: "text", text: message }]
+        role: 'user',
+        parts: [{ type: 'text', text: message }]
       },
       {
         body: {
           annotations: {
-            hello: "world"
+            hello: 'world'
           }
         }
       }
-    );
+    )
   }, [
     input,
     selectedCharacter,
     agentMessages.length,
     getCharacterDetails,
     sendMessage
-  ]);
+  ])
 
   if (!isCharacterSelected) {
     return (
@@ -97,7 +97,7 @@ export default function Chat() {
           onToggleTheme={toggleTheme}
         />
       </div>
-    );
+    )
   }
 
   return (
@@ -126,5 +126,5 @@ export default function Chat() {
         />
       </div>
     </div>
-  );
+  )
 }
