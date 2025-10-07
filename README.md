@@ -50,7 +50,7 @@ To get a local copy up and running, follow these steps.
 #### Prerequisites
 
 * Node.js (`>=18.0.0`) and npm
-* A [Cloudflare account](https://www.google.com/search?q=https://dash.cloudflare.com/sign-up)
+* A [Cloudflare account](https://dash.cloudflare.com/)
 * The `wrangler` CLI: `npm install -g wrangler`
 
 #### 1. Clone the repository
@@ -70,8 +70,8 @@ npm install
 
 1. **Create `.dev.vars` file**
    ```shell
-   touch .dev.vars
-   # See .dev.vars.example
+   cp .dev.vars.example .dev.vars
+   # Fill the missing values from your Cloudflare dashboard
    ```
    
 2. **Log in to Wrangler**
@@ -80,14 +80,14 @@ npm install
    ```
 3. **Create a D1 Database**
    ```shell
-   npx wrangler d1 create characters
-   # Let wrangler update your wrangler.jsonc file
+   npx wrangler d1 create characters --use-remote --update-config --binding DB
    npx wrangler d1 execute characters --command "CREATE TABLE characters (id INTEGER PRIMARY KEY, name TEXT, href TEXT, image_url TEXT, summary TEXT, personality TEXT, summarized_personality TEXT, data TEXT, data_length INTEGER);" --remote
    npm run setup:d1
    curl http://localhost:8787
    ```
 4. **Create a Vectorize Index**
    ```shell
+   npx wrangler vectorize create naruto-rag-index --dimensions=768 --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
    npm run setup:vectorize
    curl http://localhost:8787
    ```
