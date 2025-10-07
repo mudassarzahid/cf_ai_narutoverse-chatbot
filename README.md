@@ -102,10 +102,10 @@ npm install
    curl http://localhost:8787 # in another console
    ```
 
-#### 5. Run the App
+#### 4. Run the App
 
 ```bash
 npm run start
 ```
 
-#### 6. Open `http://localhost:5173/` in your browser and start chatting\!
+#### 5. Open `http://localhost:5173/` in your browser and start chatting\!
