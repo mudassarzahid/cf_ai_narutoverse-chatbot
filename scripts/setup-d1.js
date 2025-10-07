@@ -64,3 +64,5 @@ export default {
     }
   }
 };
+
+export class Chat {}

@@ -200,6 +200,7 @@ export function CharacterSelector({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredCharacters.map((character, index) => (
+                // biome-ignore lint: This is fine
                 <div
                   key={character.id}
                   className={`character-card p-6 cursor-pointer glass hover-lift transition-all duration-300 ${

@@ -7,11 +7,11 @@
   "scripts": {
     "start": "vite dev",
     "deploy": "vite build && wrangler deploy",
-    "setup:d1": "wrangler dev scripts/setup-d1.js -c ./wrangler.jsonc --remote --port 8787",
-    "setup:vectorize": "wrangler dev scripts/setup-vectorize.js",
+    "setup:d1": "wrangler dev scripts/setup-d1.js -c ./wrangler.jsonc --port 8787",
+    "setup:vectorize": "wrangler dev scripts/setup-vectorize.js --port 8787",
     "test": "vitest",
     "types": "wrangler types env.d.ts --include-runtime false",
-    "format": "prettier --write ."
+    "format": "npx @biomejs/biome lint --write ."
   },
   "keywords": [
     "cloudflare",
@@ -30,7 +30,6 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.4",
-    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3",
     "vite": "^7.1.9",
