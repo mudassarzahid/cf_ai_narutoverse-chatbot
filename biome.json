@@ -4,13 +4,12 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "src/**",
+      "./**",
       "!node_modules",
       "!dist",
       "!**/*.css",
       "!./env.d.ts",
-      "scripts/**",
-      "tests/**"
+      "!data"
     ]
   },
   "formatter": {

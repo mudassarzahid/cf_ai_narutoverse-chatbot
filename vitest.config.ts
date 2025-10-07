@@ -1,4 +1,4 @@
-import { defineWorkersConfig } from "@cloudflare/vitest-pool-workers/config";
+import { defineWorkersConfig } from '@cloudflare/vitest-pool-workers/config'
 
 export default defineWorkersConfig({
   environments: {
@@ -10,14 +10,14 @@ export default defineWorkersConfig({
     deps: {
       optimizer: {
         ssr: {
-          include: ["ajv"]
+          include: ['ajv']
         }
       }
     },
     poolOptions: {
       workers: {
-        wrangler: { configPath: "./wrangler.jsonc" }
+        wrangler: { configPath: './wrangler.jsonc' }
       }
     }
   }
-});
+})
