@@ -88,7 +88,9 @@ export async function setupVectorize(env) {
     console.log('Deleting all existing vectors...')
     let hasMore = true
     while (hasMore) {
-      const randomVector = Array(1024).fill(0)
+      const randomVector = Array(Number(env.EMBEDDING_VECTOR_DIMENSIONS)).fill(
+        0
+      )
       const vectors = await index.query(randomVector, { topK: 100 })
 
       if (vectors.matches.length === 0) {

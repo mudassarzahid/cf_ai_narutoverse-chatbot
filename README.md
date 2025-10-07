@@ -1,4 +1,5 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
+
 A Cloudflare-powered AI chatbot that impersonates Naruto characters using RAG-based for context retrieval.
 
 https://github.com/user-attachments/assets/211b3099-1999-4c25-a621-57f64ab8a164
@@ -25,12 +26,13 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
       e.g. name, summary, personality, story data) into a Cloudflare D1 database. Note: I obtained permission by
       Fandom.com to scrape that data from NarutoWiki. This repository does not contain the scraping script.
     * _Vectorize Index Creation_: A second script reads the same JSON file, splits the data into smaller chunks,
-      creates embeddings for each chunk using Cloudflare AI's `@cf/baai/bge-base-en-v1.5` model, and stores these
+      creates embeddings for each chunk using Cloudflare AI's `@cf/baai/bge-large-en-v1.5` model, and stores these
       vectors in a Cloudflare Vectorize index.
 
 2. **Conversation Initialization**:
    When a user selects a character on the frontend, their main information (ID, name, personality) are fetched from the
-   D1 database. This information is sent as an initial `system` message to a unique Durable Object instance which manages
+   D1 database. This information is sent as an initial `system` message to a unique Durable Object instance which
+   manages
    the chat session.
 
 3. **Conversational RAG AI**:
@@ -73,8 +75,9 @@ npm install
    ```shell
    cp .dev.vars.example .dev.vars
    # Fill the missing values from your Cloudflare dashboard
+   # and optionally change the model names to your preferences
    ```
-   
+
 2. **Log in to Wrangler**
    ```bash
    wrangler login
@@ -94,13 +97,17 @@ npm install
 4. **Create a Vectorize Index**
    ```bash
    # Create Vectorize database, dimensions match the embedding model's (specified in dev.vars)
-   npx wrangler vectorize create naruto-rag-index --dimensions=1024 --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
+   source .dev.vars && npx wrangler vectorize create naruto-rag-index --dimensions=$EMBEDDING_VECTOR_DIMENSIONS --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
    npx wrangler vectorize create-metadata-index naruto-rag-index --property-name=characterId --type=number
    
    # Create embeddings for all character data
    npm run setup:vectorize
    curl http://localhost:8787 # in another console
    ```
+
+5. **Clean up `wrangler.jsonc`**
+   The `d1_databases` and `vectorize` fields should each contain only one element (the one most recently added by the
+   setup scripts). Remove any others.
 
 #### 4. Run the App
 
