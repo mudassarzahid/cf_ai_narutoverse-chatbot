@@ -22,7 +22,7 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
 
 1. **One-Time Data Setup**:
    The project relies on two initial setup scripts that must be run before starting the application.
-    * _D1 Database Population_: A script reads the `naruto-characters.json` file and inserts all character (
+    * _D1 Database Population_: A script reads the `naruto-characters.json` file and inserts all character data (
       e.g. name, summary, personality, story data) into a Cloudflare D1 database. Note: I obtained permission by
       Fandom.com to scrape that data from NarutoWiki. This repository does not contain the scraping script.
     * _Vectorize Index Creation_: A second script reads the same JSON file, splits the data into smaller chunks,
