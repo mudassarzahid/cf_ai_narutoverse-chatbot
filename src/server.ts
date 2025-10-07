@@ -233,7 +233,7 @@ export default {
       try {
         const { results } = await env.DB.prepare(
           `
-          SELECT id, name, summary, image_url FROM characters ORDER BY name
+          SELECT id, name, summary, image_url FROM characters ORDER BY data_length DESC
         `
         ).all();
 
