@@ -1,6 +1,5 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
 
-
 https://github.com/user-attachments/assets/211b3099-1999-4c25-a621-57f64ab8a164
 <p align="center">Example chat showcasing the Chatbot's ability to impersonate the character's personality, reference specific plot points
 thanks to querying the RAG database, and overall engage in a coherent conversation.</p>
@@ -29,8 +28,8 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
       vectors in a Cloudflare Vectorize index.
 
 2. **Conversation Initialization**:
-   When a user selects a character on the frontend, their main information (ID, name, personality) are fetched from the D1
-   database. This information is sent as an initial `system` message to a unique Durable Object instance which manages
+   When a user selects a character on the frontend, their main information (ID, name, personality) are fetched from the
+   D1 database. This information is sent as an initial `system` message to a unique Durable Object instance which manages
    the chat session.
 
 3. **Conversational RAG AI**:
