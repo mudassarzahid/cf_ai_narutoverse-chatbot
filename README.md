@@ -1,6 +1,6 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
 
-A Cloudflare-powered AI chatbot that impersonates Naruto characters using RAG-based for context retrieval.
+A Cloudflare-powered AI chatbot that impersonates Naruto characters using RAG for context retrieval.
 
 https://github.com/user-attachments/assets/211b3099-1999-4c25-a621-57f64ab8a164
 <p align="center">Example chat showcasing the Chatbot's ability to impersonate the character's personality, reference specific plot points
@@ -13,7 +13,7 @@ in `TypeScript`:
 
 * _Cloudflare D1_ for the relational character database.
 * _Cloudflare Vectorize_ for the vector database to enable RAG.
-* _Cloudflare AI_ for running the LLM (`Llama 3.3`) and embedding models.
+* _Cloudflare AI_ for running the LLM (`Llama 3.3`) and embedding model .
 * _Cloudflare Durable Objects_ for managing stateful chat sessions.
 
 The frontend is developed in `TypeScript` using `React` and `Vite`, styled with `Tailwind CSS`.
@@ -22,7 +22,7 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
 
 1. **One-Time Data Setup**:
    The project relies on two initial setup scripts that must be run before starting the application.
-    * _D1 Database Population_: A script reads the `naruto-characters.json` file and inserts all character metadata (
+    * _D1 Database Population_: A script reads the `naruto-characters.json` file and inserts all character (
       e.g. name, summary, personality, story data) into a Cloudflare D1 database. Note: I obtained permission by
       Fandom.com to scrape that data from NarutoWiki. This repository does not contain the scraping script.
     * _Vectorize Index Creation_: A second script reads the same JSON file, splits the data into smaller chunks,
@@ -31,9 +31,8 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
 
 2. **Conversation Initialization**:
    When a user selects a character on the frontend, their main information (ID, name, personality) are fetched from the
-   D1 database. This information is sent as an initial `system` message to a unique Durable Object instance which
-   manages
-   the chat session.
+   D1 database. This information is sent as an initial `system` message to a unique `Durable Object` instance which
+   manages the chat session.
 
 3. **Conversational RAG AI**:
    With each new user message, the following workflow is executed on the backend:
@@ -43,12 +42,12 @@ The frontend is developed in `TypeScript` using `React` and `Vite`, styled with 
       context related to the specific character the user is chatting with. It returns the 3 most relevant text chunks.
     * A final system prompt is constructed, combining a base instruction, the character's personality, and the
       context retrieved from the RAG query.
-    * This prompt, along with the conversation history, is sent to the LLama-3.3 model running on Cloudflare AI.
+    * This prompt, along with the conversation history, is sent to the LLM running on Cloudflare AI.
     * The LLM-generated response is streamed token-by-token back to the frontend.
 
-### Run locally
+### Setup
 
-To get a local copy up and running, follow these steps.
+To get your own app up and running, follow these steps.
 
 #### Prerequisites
 
@@ -58,21 +57,21 @@ To get a local copy up and running, follow these steps.
 
 #### 1. Clone the repository
 
-```shell
+```bash
 git clone git@github.com:mudassarzahid/cf_ai_narutoverse-chatbot.git
 cd cf_ai_narutoverse-chatbot
 ```
 
 #### 2. Install dependencies
 
-```shell
+```bash
 npm install
 ```
 
 #### 3. Configure Cloudflare
 
 1. **Create `.dev.vars` file**
-   ```shell
+   ```bash
    cp .dev.vars.example .dev.vars
    # Fill the missing values from your Cloudflare dashboard
    # and optionally change the models to your preferences
@@ -84,7 +83,7 @@ npm install
    ```
 3. **Create & Populate a D1 Database**
    ```bash
-   # Create D1
+   # Create D1 database
    npx wrangler d1 create characters --use-remote --update-config --binding DB
    
    # Create characters table
@@ -96,7 +95,7 @@ npm install
    ```
 4. **Create a Vectorize Index**
    ```bash
-   # Create Vectorize database, dimensions match the embedding model's (specified in dev.vars)
+   # Create Vectorize database
    source .dev.vars && npx wrangler vectorize create naruto-rag-index --dimensions=$EMBEDDING_VECTOR_DIMENSIONS --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
    npx wrangler vectorize create-metadata-index naruto-rag-index --property-name=characterId --type=number
    
@@ -106,6 +105,7 @@ npm install
    ```
 
 5. **Clean up `wrangler.jsonc`**
+
    The `d1_databases` and `vectorize` fields should each contain only one element (the one most recently added by the
    setup scripts). Remove any others.
 
