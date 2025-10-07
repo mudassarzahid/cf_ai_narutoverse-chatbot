@@ -17,7 +17,7 @@
     {
       "binding": "DB",
       "database_name": "characters",
-      "database_id": "<YOUR DATABASE_ID>",
+      "database_id": "358d2180-a17e-4749-b7ef-e170725dbae5",
       "remote": true
     }
   ],

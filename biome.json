@@ -3,7 +3,15 @@
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["src/**", "!node_modules", "!dist", "!**/*.css", "!./env.d.ts"]
+    "includes": [
+      "src/**",
+      "!node_modules",
+      "!dist",
+      "!**/*.css",
+      "!./env.d.ts",
+      "scripts/**",
+      "tests/**"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -43,8 +51,6 @@
       "!**/dist",
       "!esm/*",
       "!public/*",
-      "!tests/*",
-      "!scripts/*",
       "!**/*.config.js",
       "!**/.DS_Store",
       "!**/node_modules",
