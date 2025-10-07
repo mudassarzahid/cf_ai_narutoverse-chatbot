@@ -1,4 +1,5 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
+A Cloudflare-powered AI chatbot that impersonates Naruto characters using RAG-based for context retrieval.
 
 https://github.com/user-attachments/assets/211b3099-1999-4c25-a621-57f64ab8a164
 <p align="center">Example chat showcasing the Chatbot's ability to impersonate the character's personality, reference specific plot points
@@ -57,7 +58,7 @@ To get a local copy up and running, follow these steps.
 
 ```shell
 git clone git@github.com:mudassarzahid/cf_ai_narutoverse-chatbot.git
-cd cloudflare-ai-naruto-chatbot
+cd cf_ai_narutoverse-chatbot
 ```
 
 #### 2. Install dependencies
@@ -75,26 +76,34 @@ npm install
    ```
    
 2. **Log in to Wrangler**
-   ```shell
+   ```bash
    wrangler login
    ```
-3. **Create a D1 Database**
-   ```shell
+3. **Create & Populate a D1 Database**
+   ```bash
+   # Create D1
    npx wrangler d1 create characters --use-remote --update-config --binding DB
+   
+   # Create characters table
    npx wrangler d1 execute characters --command "CREATE TABLE characters (id INTEGER PRIMARY KEY, name TEXT, href TEXT, image_url TEXT, summary TEXT, personality TEXT, summarized_personality TEXT, data TEXT, data_length INTEGER);" --remote
+   
+   # Populate characters table
    npm run setup:d1
-   curl http://localhost:8787
+   curl http://localhost:8787 # in another console
    ```
 4. **Create a Vectorize Index**
-   ```shell
+   ```bash
+   # Create Vectorize Index, dimensions match the embedding model specified in dev.vars
    npx wrangler vectorize create naruto-rag-index --dimensions=768 --metric=cosine --use-remote --update-config --binding VECTORIZE_INDEX
+   
+   # Create embeddings for all character data
    npm run setup:vectorize
-   curl http://localhost:8787
+   curl http://localhost:8787 # in another console
    ```
 
 #### 5. Run the App
 
-```shell
+```bash
 npm run start
 ```
 
