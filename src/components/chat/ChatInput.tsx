@@ -1,12 +1,13 @@
 import { Textarea } from "@/components/textarea/Textarea";
 import { PaperPlaneTiltIcon, StopIcon } from "@phosphor-icons/react";
 import React from "react";
+import type { ChatStatus } from "ai";
 
 interface ChatInputProps {
   input: string;
   onInputChange: (value: string) => void;
   onSubmit: () => void;
-  status: "ready" | "submitted" | "streaming";
+  status: ChatStatus;
   onStop: () => void;
 }
 
