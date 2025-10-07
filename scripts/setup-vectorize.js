@@ -1,4 +1,4 @@
-import characterData from "./naruto-characters.json" with { type: "json" };
+import characterData from "../data/naruto-characters.json" with { type: "json" };
 
 function chunkText(text, { chunkSize = 500, chunkOverlap = 50 } = {}) {
   if (typeof text !== "string" || !text) return [];

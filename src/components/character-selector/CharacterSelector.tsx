@@ -56,14 +56,29 @@ export function CharacterSelector({
   }, [onGetCharacters]);
 
   const filteredCharacters = useMemo(() => {
-    if (!searchQuery.trim()) return characters;
-
+    if (!searchQuery.trim()) {
+      return characters;
+    }
     const query = searchQuery.toLowerCase();
-    return characters.filter(
-      (char) =>
-        char.name.toLowerCase().includes(query) ||
-        char.summary.toLowerCase().includes(query)
+    const allMatches = characters.filter(char =>
+      char.name.toLowerCase().includes(query) ||
+      char.summary.toLowerCase().includes(query)
     );
+
+    allMatches.sort((a, b) => {
+      const aIsNameMatch = a.name.toLowerCase().includes(query);
+      const bIsNameMatch = b.name.toLowerCase().includes(query);
+
+      if (aIsNameMatch && !bIsNameMatch) {
+        return -1;
+      }
+      if (!aIsNameMatch && bIsNameMatch) {
+        return 1;
+      }
+      return 0;
+    });
+
+    return allMatches;
   }, [characters, searchQuery]);
 
   const handleCharacterClick = (character: Character) => {
@@ -175,7 +190,7 @@ export function CharacterSelector({
             />
             <input
               type="text"
-              placeholder="Search characters by name or description..."
+              placeholder="Search characters..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-12 pr-4 py-4 border border-slate-300 dark:border-slate-600 rounded-2xl bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-500 focus:border-transparent transition-all duration-300"

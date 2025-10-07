@@ -1,3 +1,5 @@
+import React from "react";
+
 type SlotProps<T extends React.ElementType> = {
   as: T;
 } & React.ComponentPropsWithRef<T>;

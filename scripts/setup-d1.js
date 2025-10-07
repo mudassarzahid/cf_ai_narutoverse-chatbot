@@ -1,4 +1,4 @@
-import characterData from "./naruto-characters.json" with { type: "json" };
+import characterData from "../data/naruto-characters.json" with { type: "json" };
 
 const CHUNK_SIZE = 5;
 
