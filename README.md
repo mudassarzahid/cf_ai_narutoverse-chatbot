@@ -1,5 +1,7 @@
 ## NarutoVerse Chatbot - Powered by Cloudflare
 
+
+https://github.com/user-attachments/assets/211b3099-1999-4c25-a621-57f64ab8a164
 <p align="center">Example chat showcasing the Chatbot's ability to impersonate the character's personality, reference specific plot points
 thanks to querying the RAG database, and overall engage in a coherent conversation.</p>
 
