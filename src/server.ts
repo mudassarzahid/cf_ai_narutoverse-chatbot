@@ -140,7 +140,7 @@ export class Chat extends AIChatAgent<Env> {
           return
         }
 
-        let systemPrompt = `You are a role-playing chatbot.`
+        let systemPrompt = `You are a roleplaying chatbot.`
         if (characterContext) {
           systemPrompt = `You are ${characterContext.name}.
 Respond as this character, embodying their personality: "${characterContext.personality}"
