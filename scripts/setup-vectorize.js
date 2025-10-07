@@ -86,7 +86,6 @@ export async function setupVectorize(env) {
 
   try {
     console.log('Deleting all existing vectors...')
-    let _deletedCount = 0
     let hasMore = true
     while (hasMore) {
       const randomVector = Array(768).fill(0)
@@ -99,7 +98,6 @@ export async function setupVectorize(env) {
 
       const idsToDelete = vectors.matches.map((v) => v.id)
       await index.deleteByIds(idsToDelete)
-      _deletedCount += idsToDelete.length
     }
 
     const dataToVectorize = getDataForVectorization()
@@ -142,7 +140,7 @@ export default {
       const result = await setupVectorize(env)
       return new Response(
         JSON.stringify({
-          message: '🎉 Vectorize index setup completed successfully!',
+          message: 'Vectorize index setup completed successfully!',
           ...result
         }),
         {

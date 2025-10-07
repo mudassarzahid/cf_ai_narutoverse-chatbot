@@ -9,7 +9,8 @@
       "!dist",
       "!**/*.css",
       "!./env.d.ts",
-      "!data"
+      "!data",
+      "!.wrangler"
     ]
   },
   "formatter": {
