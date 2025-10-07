@@ -75,7 +75,7 @@ npm install
    ```shell
    cp .dev.vars.example .dev.vars
    # Fill the missing values from your Cloudflare dashboard
-   # and optionally change the model names to your preferences
+   # and optionally change the models to your preferences
    ```
 
 2. **Log in to Wrangler**
