@@ -13,7 +13,7 @@ in `TypeScript`:
 
 * _Cloudflare D1_ for the relational character database.
 * _Cloudflare Vectorize_ for the vector database to enable RAG.
-* _Cloudflare AI_ for running the LLM (`Llama 3.3`) and embedding model .
+* _Cloudflare AI_ for running the LLM (`Llama 3.3`) and embedding model.
 * _Cloudflare Durable Objects_ for managing stateful chat sessions.
 
 The frontend is developed in `TypeScript` using `React` and `Vite`, styled with `Tailwind CSS`.
