@@ -1,4 +1,4 @@
 CLOUDFLARE_ACCOUNT_ID="YOUR_CLOUDFLARE_ACCOUNT_ID"
 CLOUDFLARE_API_TOKEN="YOUR_CLOUDFLARE_API_TOKEN"
-EMBEDDING_MODEL="@cf/baai/bge-base-en-v1.5"
+EMBEDDING_MODEL="@cf/baai/bge-large-en-v1.5"
 TEXT_MODEL="@cf/meta/llama-3.3-70b-instruct-fp8-fast"

@@ -70,7 +70,7 @@ export class Chat extends AIChatAgent<Env> {
               try {
                 if (env.AI && env.VECTORIZE_INDEX) {
                   const embeddingResponse = await env.AI.run(
-                    '@cf/baai/bge-base-en-v1.5',
+                    env.EMBEDDING_MODEL as keyof AiModels,
                     {
                       text: [userText]
                     }
