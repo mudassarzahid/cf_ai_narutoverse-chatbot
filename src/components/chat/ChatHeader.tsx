@@ -9,11 +9,12 @@ import {
 import { Avatar } from '@/components/avatar/Avatar'
 import { Button } from '@/components/button/Button'
 import { Toggle } from '@/components/toggle/Toggle'
+import type { Theme } from '@/hooks/useTheme'
 import type { Character } from '@/types'
 
 interface ChatHeaderProps {
   character: Character | null
-  theme: 'dark' | 'light'
+  theme: Theme
   onToggleTheme: () => void
   onClearHistory: () => void
   onClearSelection: () => void
@@ -68,10 +69,7 @@ export function ChatHeader({
           {theme === 'dark' ? (
             <SunIcon size={20} className="text-orange-300" />
           ) : (
-            <MoonIcon
-              size={20}
-              className="text-slate-600 dark:text-slate-300"
-            />
+            <MoonIcon size={20} className="text-blue-400" />
           )}
         </Button>
 

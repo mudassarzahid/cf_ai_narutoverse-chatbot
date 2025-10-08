@@ -48,38 +48,26 @@ export default function Chat() {
     if (agentMessages.length === 0) {
       const characterResult = await getCharacterDetails(selectedCharacter.id)
       if (characterResult.character) {
-        await sendMessage(
-          {
-            role: 'system',
-            parts: [
-              {
-                type: 'text',
-                text: `CHARACTER_CONTEXT: ${JSON.stringify({
-                  id: characterResult.character.id,
-                  name: characterResult.character.name,
-                  personality: characterResult.character.personality
-                })}`
-              }
-            ]
-          },
-          { body: {} }
-        )
+        await sendMessage({
+          role: 'system',
+          parts: [
+            {
+              type: 'text',
+              text: `CHARACTER_CONTEXT: ${JSON.stringify({
+                id: characterResult.character.id,
+                name: characterResult.character.name,
+                personality: characterResult.character.personality
+              })}`
+            }
+          ]
+        })
       }
     }
 
-    await sendMessage(
-      {
-        role: 'user',
-        parts: [{ type: 'text', text: message }]
-      },
-      {
-        body: {
-          annotations: {
-            hello: 'world'
-          }
-        }
-      }
-    )
+    await sendMessage({
+      role: 'user',
+      parts: [{ type: 'text', text: message }]
+    })
   }, [
     input,
     selectedCharacter,

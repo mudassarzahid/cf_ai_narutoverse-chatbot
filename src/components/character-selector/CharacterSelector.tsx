@@ -9,12 +9,13 @@ import { useEffect, useMemo, useState } from 'react'
 import { Avatar } from '@/components/avatar/Avatar'
 import { Button } from '@/components/button/Button'
 import { Card } from '@/components/card/Card'
+import type { Theme } from '@/hooks/useTheme'
 import type { Character } from '@/types'
 
 interface CharacterSelectorProps {
   onCharacterSelect: (character: Character) => void
   onGetCharacters: () => Promise<{ characters?: Character[]; error?: string }>
-  theme: 'dark' | 'light'
+  theme: Theme
   onToggleTheme: () => void
 }
 
