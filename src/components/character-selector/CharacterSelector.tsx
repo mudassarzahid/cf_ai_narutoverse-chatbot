@@ -142,7 +142,7 @@ export function CharacterSelector({
             </div>
             <Button
               onClick={() => window.location.reload()}
-              className="bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg"
+              className="bg-gradient-to-r from-slate-200 to-slate-300 hover:from-slate-300 hover:to-slate-400 px-6 py-3 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-lg place-self-center"
             >
               Try Again
             </Button>

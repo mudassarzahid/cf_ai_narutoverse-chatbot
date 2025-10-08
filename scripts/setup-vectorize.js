@@ -67,7 +67,6 @@ async function createEmbeddingsBatch(texts, env) {
   const allEmbeddings = []
   for (let i = 0; i < texts.length; i += BATCH_SIZE) {
     const batch = texts.slice(i, i + BATCH_SIZE)
-
     console.log(
       `Creating embeddings for batch ${Math.floor(i / BATCH_SIZE) + 1}/${Math.ceil(texts.length / BATCH_SIZE)}`
     )

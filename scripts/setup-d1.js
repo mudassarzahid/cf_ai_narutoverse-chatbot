@@ -17,7 +17,6 @@ export default {
       for (let i = 0; i < characterData.length; i += CHUNK_SIZE) {
         const chunk = characterData.slice(i, i + CHUNK_SIZE)
         const chunkNumber = i / CHUNK_SIZE + 1
-
         console.log(`Processing chunk ${chunkNumber} of ${totalChunks}...`)
 
         const bindings = chunk.map((char) =>

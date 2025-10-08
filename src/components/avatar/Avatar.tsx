@@ -8,7 +8,6 @@ export type AvatarProps = {
   as?: React.ElementType
   className?: string
   external?: boolean
-
   href?: string
   id?: number | string
   image?: string

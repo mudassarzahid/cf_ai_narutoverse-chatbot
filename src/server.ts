@@ -10,15 +10,16 @@ import {
   type UIMessage
 } from 'ai'
 import { createWorkersAI } from 'workers-ai-provider'
+import type { TextGenerationModels } from 'workers-ai-provider/src/workersai-models'
 
 import { cleanupMessages } from './utils'
 import { env } from 'cloudflare:workers'
 
 const workersai = createWorkersAI({ binding: env.AI })
-// @ts-ignore
-const model = workersai(env.TEXT_MODEL)
+const model = workersai(env.TEXT_MODEL as TextGenerationModels)
 
 export class Chat extends AIChatAgent<Env> {
+  RAG_TOP_K = 3
   async onChatMessage(
     onFinish: StreamTextOnFinishCallback<ToolSet>,
     _options?: { abortSignal?: AbortSignal }
@@ -84,7 +85,7 @@ export class Chat extends AIChatAgent<Env> {
                     const results = await env.VECTORIZE_INDEX.query(
                       queryEmbedding,
                       {
-                        topK: 3,
+                        topK: this.RAG_TOP_K,
                         returnMetadata: true,
                         filter: { characterId: characterContext.id }
                       }
@@ -94,8 +95,6 @@ export class Chat extends AIChatAgent<Env> {
                       const formattedResults = results.matches
                         .map((match: any) => `- ${match.metadata.text}`)
                         .join('\n')
-
-                      ragContext = `\n\n**ADDITIONAL CONTEXT (for your reference only):**\n${formattedResults}`
 
                       const ragContextMessage: UIMessage = {
                         id: `rag-context-${Date.now()}`,
